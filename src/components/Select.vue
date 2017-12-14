@@ -291,7 +291,7 @@
         <slot name="selected-option" v-bind="option">
           {{ getOptionLabel(option) }}
         </slot>
-        <button v-if="multiple" :disabled="disabled" @click="deselect(option)" type="button" class="close" aria-label="Remove option">
+        <button v-if="multiple && isOptionRemovable(option)" :disabled="disabled" @click="deselect(option)" type="button" class="close" aria-label="Remove option">
           <span aria-hidden="true">&times;</span>
         </button>
       </span>
@@ -583,6 +583,17 @@
       dir: {
         type: String,
         default: 'auto'
+      },
+
+      /**
+       * User defined function for determining if the tag is removable.
+       * @type {Function}
+       */
+      isOptionRemovable: {
+        type: Function,
+        default(option) {
+          return true;
+        }
       },
     },
 
