@@ -586,6 +586,17 @@
       },
 
       /**
+       * User defined function for filtering options for select.
+       * @type {Function}
+       */
+      isOptionAllowed: {
+        type: Function,
+        default(newOption) {
+          return true;
+        }
+      },
+
+      /**
        * User defined function for determining if the tag is removable.
        * @type {Function}
        */
@@ -690,7 +701,9 @@
             option = this.createOption(option)
           }
 
-          if (this.multiple && !this.mutableValue) {
+          if (!this.isOptionAllowed(option)){
+            this.$emit('option:rejected', option);
+          } else if (this.multiple && !this.mutableValue) {
             this.mutableValue = [option]
           } else if (this.multiple) {
             this.mutableValue.push(option)
