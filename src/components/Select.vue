@@ -339,6 +339,7 @@
               :readonly="!searchable"
               :style="{ width: isValueEmpty ? '100%' : 'auto' }"
               :id="inputId"
+              :name="inputName"
               aria-label="Search for option"
       >
 
@@ -622,6 +623,15 @@
       dir: {
         type: String,
         default: 'auto'
+      },
+
+      /**
+       * Sets the name of the input element.
+       * @type {String}
+       * @default {null}
+       */
+      inputName: {
+          type: String
       },
 
       /**
