@@ -325,6 +325,9 @@
               @keydown.up.prevent="typeAheadUp"
               @keydown.down.prevent="typeAheadDown"
               @keydown.enter.prevent="typeAheadSelect"
+              @keydown.188="onKeyComma"
+              @keydown.tab="onKeyTab"
+              @keydown.space="onKeySpace"
               @blur="onSearchBlur"
               @focus="onSearchFocus"
               type="search"
@@ -381,9 +384,10 @@
   import pointerScroll from '../mixins/pointerScroll'
   import typeAheadPointer from '../mixins/typeAheadPointer'
   import ajax from '../mixins/ajax'
+  import keyMaps from '../mixins/keyMaps'
 
   export default {
-    mixins: [pointerScroll, typeAheadPointer, ajax],
+    mixins: [pointerScroll, typeAheadPointer, ajax, keyMaps],
 
     props: {
       /**
@@ -651,6 +655,22 @@
           return true;
         }
       },
+
+      shouldSpaceTrigger: {
+        type: Boolean,
+        default: false,
+      },
+
+      shouldTabTrigger: {
+        type: Boolean,
+        default: false,
+      },
+
+      shouldCommaTrigger: {
+        type: Boolean,
+        default: false,
+      },
+
     },
 
     data() {
