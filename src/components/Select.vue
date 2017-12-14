@@ -945,7 +945,11 @@
         if (this.pushTags) {
           this.mutableOptions.push(option)
         }
-      }
+      },
+
+      visitSearch(fnc){
+          fnc(this.$refs.search);
+      },
     },
 
     computed: {
@@ -1065,7 +1069,8 @@
        */
       showClearButton() {
         return !this.multiple && !this.open && this.mutableValue != null
-      }
+      },
+
     },
 
   }
